@@ -3,16 +3,37 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/compatible": "^1.0.2",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "antd": "^4.1.5",
+    "axios": "^0.19.2",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-import": "^1.13.0",
+    "chart.js": "^2.9.3",
+    "codemirror": "^5.53.2",
+    "dayjs": "^1.8.25",
+    "eslint-loader": "^4.0.0",
+    "highlightjs": "^9.16.2",
+    "history": "^4.10.1",
+    "mobx": "^5.15.4",
+    "mobx-react": "^6.2.2",
     "react": "^16.13.1",
+    "react-app-rewire-mobx": "^1.0.9",
+    "react-calendar-heatmap": "^1.8.1",
+    "react-chartjs-2": "^2.9.0",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
+    "react-google-recaptcha": "^2.0.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "react-tooltip": "^4.2.5",
+    "tui-editor": "^1.4.10"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -30,5 +51,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "customize-cra": "^0.9.1",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "react-app-rewired": "^2.1.5"
   }
 }

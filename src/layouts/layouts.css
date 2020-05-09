@@ -1,0 +1,59 @@
+.ant-layout-sider{
+    box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
+}
+.ant-layout-sider .log{
+    background: #002140;
+    height: 64px;
+    line-height: 64px;
+    overflow: hidden;
+    padding-left: 24px;
+    position: relative;
+    transition: all .3s; 
+}
+.ant-layout-sider .logo img {
+    width: 32px;
+    height: 32px; 
+}
+.ant-layout-sider .logo h1 {
+    color: #fff;
+    display: inline-block;
+    font-family: Myriad Pro, Helvetica Neue, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 0 12px;
+    vertical-align: middle; 
+}
+.ant-layout-header {
+    box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08); 
+}
+
+.global_config {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 48px;
+    top: 0;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.65); }
+    .global_config .config_item {
+        display: inline-block;
+        padding: 0 12px;
+        cursor: pointer;
+        transition: all .3s, padding 0s; }
+        .global_config .config_item:hover {
+            background: rgba(0, 0, 0, 0.025); }
+
+
+.trigger {
+    cursor:pointer;
+    font-size:20px;
+    padding:22px 24px;
+    transition: all .3s, padding 0s;
+    -webkit-transition: all .3s, padding 0s;
+    -moz-transition: all .3s, padding 0s;
+    -ms-transition: all .3s, padding 0s;
+    -o-transition: all .3s, padding 0s;
+}
+.trigger:hover{
+    background: rgba(0, 0, 0, 0.025); 
+}
