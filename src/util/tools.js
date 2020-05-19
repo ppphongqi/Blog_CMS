@@ -22,22 +22,11 @@ export const beforeUpload = (file)=>{
 
 
 export const upload = () =>{
-
-/* 修改 */
-    // const token = window.localStorage.getItem('token');
-    // return {
-    //     headers:{
-    //         Authorization: `Bearer ${token}`,
-    //     },
-    //     action:uploadApi,
-    // }
-
+    const token = window.localStorage.getItem('token');
     return {
-
         headers: {
-            authorization: 'authorization-text',
+            Authorization: `Bearer ${token}`,
         },
-        action:  'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+        action:  uploadApi,
     }
-
 }

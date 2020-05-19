@@ -172,6 +172,10 @@ class ArticleDetailStore {
         this.title = e.target.value;
     }
 
+    @action onSummaryChange = (e) =>{
+        this.summary = e.target.value;
+    }
+
     @action onContentChange = (e) =>{
         this.content = e.target.value;
     }
@@ -222,7 +226,7 @@ class ArticleDetailStore {
     }
 
     @computed get isFilled(){
-        return this.headerCover !== '' && this.title !== '' && this.summary !== '' && this.tags.length !== 0 ;                                   
+        return  this.title !== '' && this.summary !== '' && this.tags.length !== 0 ;                                   
     }
 
     @action handleSave = async (activity ,content,status)=>{

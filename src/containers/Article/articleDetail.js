@@ -28,6 +28,43 @@ class ArticleDetail extends Component{
             const {articleDetailStore } = this.props;
             articleDetailStore.test();
             articleDetailStore.initEditor();
+            if(window.location.pathname.indexOf('update') !== -1){
+                articleDetailStore.getDataById();
+            } else {
+                articleDetailStore.clearData()
+            }
+            this.uploadImage();
+        }
+        uploadImage = () =>{
+            const { articleDetailStore} = this.props;
+            const editor = articleDetailStore.editorInstance;
+            editor.eventManager.addEventType('upload');
+            editor.eventManager.listen('upload',()=>{
+                Modal.confirm({
+                    title: 'upload image',
+                    width: 700,
+                    content: (
+                    <div>
+                        <Dragger
+                            name="avatar"
+                            {...upload()}
+                            beforeUpload={beforeUpload}
+                            onChange={articleDetailStore.onContentImageUploadChange}
+                        >
+                            <p className="ant-upload-drag-icon">
+                            <Icon type="inbox" />
+                        </p>
+                        <p className="ant-upload-text">Click or drag file to this area to upload</p>
+                        <p className="ant-upload-hint">Support for a single or bulk upload. Strictly prohibit from uploading company data or other band files</p>
+                        </Dragger>
+                    </div>
+                    ),
+                    onOk() {
+                        editor.insertText(`\n\n![${articleDetailStore.editorImageName}](${articleDetailStore.editorImage})`);
+                    },
+                });
+            });
+
         }
 
         render(){
@@ -51,6 +88,7 @@ class ArticleDetail extends Component{
                         <Upload
                             name="avatar"
                             listType="picture-card"
+                            className="avatar-uploader"
                             showUploadList={false}
                             {...upload()}
                             beforeUpload={beforeUpload}
@@ -130,7 +168,36 @@ class ArticleDetail extends Component{
                                 </Tag>
                             )}
                         </div>
+                        <div className="submit_btn_group">
+                            <Popconfirm
+                                title="保存并提交?"
+                                icon={<Icon type="warning" style={{ color : "red"}}/>}
+                                onConfirm={() => articleDetailStore.handleSave("toUpdate",articleDetailStore.editorInstance.convertor.toHTML(articleDetailStore.editorInstance.getValue()),true)}
+                                onCancel={()  => articleDetailStore.handleSave('toUpdate',articleDetailStore.editorInstance.convertor.toHTML(articleDetailStore.editorInstance.getValue()), false) }
+                            >
+                                <Button
+                                    type="primary"
+                                    style={{
+                                        marginBottom:16,
+                                        marginLeft : 20
+                                    }}
+                                >
+                                    保存并继续修改
+                                </Button>
+                            </Popconfirm>
+                            <Button
+                                onClick={()=>articleDetailStore.handleSave('toList',articleDetailStore.editorInstance.convertor.toHTML(articleDetailStore.editorInstance.getValue()),true)}
+                                style={{
+                                    marginBottom:16,
+                                    marginLeft : 20,
+                                    background:'#19be6b',
+                                    borderColor:'#19be6b'
+                                }}
+                            >
+                                保存
+                            </Button>
 
+                        </div>
 
                     </section>
 

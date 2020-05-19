@@ -1,48 +1,53 @@
 import axios from 'axios';
-// import { message } from 'antd/lib/index';
+import { message } from 'antd/lib/index';
 import baseUrl from './baseUrl';
-// import history from '../history';
+import history from '../history';
+import qs from 'qs';
 
 // 超时设置
 axios.defaults.timeout = 5 * 1000;
 
 // 设置请求头
+
 axios.defaults.headers.post['Content-Type'] = 'application/json';
+// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 axios.defaults.headers.put['Content-Type'] = 'application/json';
 
 //设置基础URL
 axios.defaults.baseURL = baseUrl.development;
 
 //请求拦截
-// let cancelFlag = true;
-// axios.interceptors.request.use(
-//     (req)=>{
-//         if(req.url !== '/login'){
-//             const now = new Date().getTime;
-//             const token = window.localStorage.getItem('token');
-//             const expires = window.localStorage.getItem('expires_date');
-//             if(expires && token){
-//                 if(expires - now < 0){
-//                     message.error('token expires!');
-//                     window.localStorage.clear();
-//                     setTimeout(()=>{
-//                         history.push('/login');
-//                     },2000);
-//                     return false
-//                 }
-//             req.headers.Authorization = `Bearer ${token}`;
-//         } else if(cancelFlag) {
-//             cancelFlag = false;
-//             return false
-//         } else {
-//             history.push('/login');
-//             return false
-//         }
-//     }
-//     return req;
-// },
-// err => Promise.reject(err) 
-// );
+let cancelFlag = true ;
+const token = window.localStorage.getItem('token')
+axios.interceptors.request.use(
+    (req) => {
+        if(req.url !== '/login'){
+            const now = new Date().getTime();
+            const token = window.localStorage.getItem('token');
+            const expires = window.localStorage.getItem('expires_date');
+            if(expires && token){
+                if(expires - now < 0 ){
+                    message.error('token已过期，请重新登录!');
+                    window.localStorage.clear();
+                    setTimeout(()=>{
+                        history.push('/login')
+                    },2000)
+                    return false;
+                }
+                req.headers.Authorization = `Bearer ${token}`;
+            }else if(cancelFlag){
+                history.push('/login');
+                cancelFlag = false;
+                return false;
+            }else{
+                history.push('/login');
+                return false;
+            }
+        } 
+        return req
+    },
+    err => Promise.reject(err),
+);
 
 // 响应拦截
 // axios.interceptors.response.use(
