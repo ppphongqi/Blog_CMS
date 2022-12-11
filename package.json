@@ -21,7 +21,7 @@
     "http-proxy-middleware": "^1.0.3",
     "mobx": "^5.15.4",
     "mobx-react": "^6.2.2",
-    "qs": "^6.9.4",
+    "qs": "^6.9.7",
     "react": "^16.13.1",
     "react-app-rewire-mobx": "^1.0.9",
     "react-calendar-heatmap": "^1.8.1",
